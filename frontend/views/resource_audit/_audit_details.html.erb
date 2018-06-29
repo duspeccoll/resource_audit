@@ -1,0 +1,21 @@
+<h4><%= I18n.t("plugins.resource_audit.labels.#{audit['element']}") %></h4>
+<div class="audit-details-<%= audit['element'] %>">
+  <% if audit['outcome'] == "pass" %>
+    <div class="audit-details alert-success">
+      <h4 class="alert-heading">Pass</h4>
+      <%= render_aspace_partial :partial => "audit_value", :locals => {:audit => audit} %>
+    </div>
+  <% elsif audit['outcome'] == "partial_pass" %>
+    <div class="audit-details alert-info">
+      <h4 class="alert-heading">Partial Pass</h4>
+      <p><strong><%= audit['reason'] %></strong></p>
+      <%= render_aspace_partial :partial => "audit_value", :locals => {:audit => audit} %>
+    </div>
+  <% elsif audit['outcome'] == "fail" %>
+    <div class="audit-details alert-danger">
+      <h4 class="alert-heading">Fail</h4>
+      <p><strong><%= audit['reason'] %></strong></p>
+      <%= render_aspace_partial :partial => "audit_value", :locals => {:audit => audit} %>
+    </div>
+  <% end %>
+</div>

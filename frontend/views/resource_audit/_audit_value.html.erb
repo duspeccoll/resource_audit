@@ -1,0 +1,11 @@
+<% if audit.has_key?('values') %>
+  <% audit['values'].each do |value| %>
+    <% if value.is_a?(Hash) %>
+      <p><strong><%= value['type'] %>:</strong> <%= value['value'] %></p>
+    <% else %>
+      <p><%= value %></p>
+    <% end %>
+  <% end %>
+<% else %>
+  <p><%= audit['value'] %></p>
+<% end %>

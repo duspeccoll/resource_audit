@@ -1,0 +1,34 @@
+<%= setup_context :title => I18n.t("plugins.resource_audit.title") %>
+
+<div class="row">
+  <div class="col-md-12" style="padding-bottom: 10px;">
+    <h2>Audit Results for <%= @results['call_number'] %> <%= @results['title'] %></h2>
+
+    <div class="audit-result">
+      <% if @results['outcome'] == "pass" %>
+        <p>The audit <span class="audit-success">passed</span>.</p>
+      <% elsif @results['outcome'] == "partial_pass" %>
+        <p>The audit <span class="audit-info">partially passed</span>.</p>
+      <% elsif @results['outcome'] == "fail" %>
+        <p>The audit <span class="audit-danger">failed</span>.</p>
+      <% end %>
+      <p><a data-toggle="collapse" href="#auditDetails" aria-expanded="false" aria-controls="auditDetails">View details</a> or <%= link_to ('edit the record'), :controller => :resolver, :action => :resolve_edit, :uri => @results['uri'] %>...</p>
+    </div>
+
+    <div class="collapse" id="auditDetails">
+      <div class="audit-details">
+        <% @results['audits'].each do |audit| %>
+          <section id="audit_details_<%= audit['element'] %>">
+            <%= render_aspace_partial :partial => "audit_details", :locals => {:audit => audit} %>
+          </section>
+        <% end %>
+      </div>
+  </div>
+
+  <br />
+  <h3>Perform another audit?</h3>
+  <%= render_aspace_partial :partial => "form" %>
+</div>
+
+<link rel="stylesheet" type="text/css" href="<%= "#{AppConfig[:frontend_proxy_prefix]}assets/resource_audit.css" %>"></link>
+<script src="<%= "#{AppConfig[:frontend_prefix]}assets/resource_audit.js" %>"></script>

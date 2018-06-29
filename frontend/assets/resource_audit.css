@@ -1,0 +1,5 @@
+.audit-result { font-size: 18px; }
+.audit-danger { color: #a94442; }
+.audit-info { color: #31708f; }
+.audit-success { color: #3c763d; }
+.audit-details { padding: 10px; }

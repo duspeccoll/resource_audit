@@ -1,0 +1,14 @@
+<%= form_tag({:controller => :resource_audit, :action => :submit}, {:class => "form-horizontal", :id => "resource_audit_form"}) do |f| %>
+  <div class="form-group required">
+    <label class="control-label col-sm-2" for="resource">Resource</label>
+    <div class="controls col-sm-8">
+      <%= render_aspace_partial :partial => "resource_linker" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="controls">
+      <%= submit_tag I18n.t("plugins.resource_audit.actions.submit"), :class => "btn btn-primary pull-right" %>
+    </div>
+  </div>
+<% end %>

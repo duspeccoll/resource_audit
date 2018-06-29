@@ -1,0 +1,17 @@
+en:
+  plugins:
+    resource_audit:
+      label: Resource Audit
+      title: Resource Audit
+      actions:
+        submit: Submit
+      labels:
+        title: Title
+        call_number: Call Number
+        date: Dates
+        extent: Extents
+        abstract: Abstract
+        bioghist: Biographical/Historical Note
+        scopecontent: Scope/Content Note
+        creator: Creators
+        subject: Subjects
