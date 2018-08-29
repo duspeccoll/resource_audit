@@ -6,20 +6,18 @@ class ResourceAudit
 
   def initialize(id)
     @resource = URIResolver.resolve_references(Resource.to_jsonmodel(id), ['linked_agents', 'subjects'])
-    @audit_data = {}
+    @audit_data = {
+      'uri' => @resource['uri'],
+      'title' => @resource['title'],
+      'call_number' => @resource['id_0'],
+      'level' => @resource['user_defined']['enum_1']
+    }
 
     resource_audit
   end
 
 
   def resource_audit
-    @audit_data.merge({
-      'uri' => @resource['uri'],
-      'title' => @resource['title'],
-      'call_number' => @resource['id_0'],
-      'level' => @resource['user_defined']['enum_1']
-    })
-
     audits = []
     audits.push(audit("title", @resource['title']))
     audits.push(audit("call_number", @resource['id_0']))
